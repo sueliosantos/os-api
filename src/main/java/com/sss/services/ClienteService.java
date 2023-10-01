@@ -36,8 +36,8 @@ public class ClienteService {
 		if (findByCpf(dto)!=null) {
 			throw new DataValidateExecpiton("CPF já cadastrado na base de dados!");
 		}
-		Cliente tecnico = new Cliente(null, dto.getNome(), dto.getCpf(), dto.getTelefone());
-		return repository.save(tecnico);
+		Cliente cliente = new Cliente(null, dto.getNome(), dto.getCpf(), dto.getTelefone());
+		return repository.save(cliente);
 	}
 	
 	private Pessoa findByCpf(ClienteDTO dto) {
