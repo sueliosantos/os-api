@@ -1,10 +1,14 @@
 package com.sss.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.sss.domain.Tecnico;
+import com.sss.enums.Perfil;
 
 import jakarta.validation.constraints.NotEmpty;
 
@@ -18,12 +22,10 @@ public class TecnicoDTO implements Serializable{
 	@CPF
 	@NotEmpty(message = "O campo CPF é obrigatório")
 	private String cpf;
-	
 	private String telefone;
-	
 	private String email;
-	
 	private String senha;
+	protected Set<Integer> perfis = new HashSet<>();
 	
 	public TecnicoDTO() {
 		super();
@@ -81,12 +83,23 @@ public class TecnicoDTO implements Serializable{
 
 	public TecnicoDTO(Tecnico obj) {
 		super();
-		this.id = id;
-		this.nome = nome;
-		this.cpf = cpf;
-		this.telefone = telefone;
-		this.email = email;
-		this.senha = senha;
+		this.id = obj.getId();
+		this.nome = obj.getNome();
+		this.cpf = obj.getCpf();
+		this.telefone = obj.getTelefone();
+		this.email = obj.getEmail();
+		this.senha = obj.getSenha();
+		this.perfis = obj.getPerfis().stream().map(x -> x.getCod()).collect(Collectors.toSet());
+	}
+
+
+	public Set<Perfil> getPerfis() {
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	}
+
+
+	public void addPerfil(Perfil perfi) {
+		this.perfis.add(perfi.getCod());
 	}
 	
 	
