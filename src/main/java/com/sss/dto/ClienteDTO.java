@@ -21,16 +21,12 @@ public class ClienteDTO implements Serializable{
 	
 	private String telefone;
 	
+	private String email;
+	
+	private String senha;
+	
 	public ClienteDTO() {
 		super();
-	}
-
-	public ClienteDTO(Cliente obj) {
-		super();
-		this.id = obj.getId();
-		this.nome = obj.getNome();
-		this.cpf = obj.getCpf();
-		this.telefone = obj.getTelefone();
 	}
 
 	public Integer getId() {
@@ -63,6 +59,36 @@ public class ClienteDTO implements Serializable{
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+
+
+	public ClienteDTO(Cliente obj) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.telefone = telefone;
+		this.email = email;
+		this.senha = senha;
 	}
 	
 	

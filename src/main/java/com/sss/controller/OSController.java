@@ -16,11 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.sss.domain.Cliente;
 import com.sss.domain.OS;
-import com.sss.dto.ClienteDTO;
 import com.sss.dto.OSDTO;
-import com.sss.services.ClienteService;
 import com.sss.services.OSService;
 
 import jakarta.validation.Valid;

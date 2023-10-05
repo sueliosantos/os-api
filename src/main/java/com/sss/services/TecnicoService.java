@@ -1,5 +1,7 @@
 package com.sss.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,7 @@ public class TecnicoService {
 	private PessoaRepository pessoaRepository;
 	
 	public Tecnico findById(Integer id) {
-		java.util.Optional<Tecnico> obj = repository.findById(id);
+		Optional<Tecnico> obj = repository.findById(id);
 		return obj.orElseThrow(()-> new ObjectNotFoundException("Não encontrado! Id: " 
 		+ id + " Tipo: " + Tecnico.class.getName()));
 	}
@@ -36,7 +38,7 @@ public class TecnicoService {
 		if (findByCpf(dto)!=null) {
 			throw new DataValidateExecpiton("CPF já cadastrado na base de dados!");
 		}
-		Tecnico tecnico = new Tecnico(null, dto.getNome(), dto.getCpf(), dto.getTelefone());
+		Tecnico tecnico = new Tecnico(null, dto.getNome(), dto.getCpf(), dto.getTelefone(), dto.getEmail(), dto.getSenha());
 		return repository.save(tecnico);
 	}
 	
