@@ -3,6 +3,8 @@ package com.sss.services;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,12 +12,8 @@ import com.sss.domain.Cliente;
 import com.sss.domain.OS;
 import com.sss.domain.Tecnico;
 import com.sss.dto.OSDTO;
-import com.sss.enums.Prioridade;
-import com.sss.enums.Status;
 import com.sss.exceptions.ObjectNotFoundException;
 import com.sss.repositories.OSRepository;
-
-import jakarta.validation.Valid;
 
 @Service
 public class OSService {

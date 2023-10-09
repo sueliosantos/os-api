@@ -3,13 +3,13 @@ package com.sss.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sss.enums.Perfil;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
 
 
 

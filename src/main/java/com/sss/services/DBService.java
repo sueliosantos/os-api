@@ -3,6 +3,7 @@ package com.sss.services;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.sss.domain.Cliente;
@@ -25,10 +26,14 @@ public class DBService {
 	@Autowired
 	private OSRepository osRepository;
 	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+
+	
 	public void instanciaDB() {
 		// id, String nome, @CPF String cpf, String telefone, String email, String senha
-		Tecnico t1 = new Tecnico(null, "Suelio", "034.055.944-64", "8499671-4505", "sueliosantos@gmail.com", "1213456");
-		Cliente c1 = new Cliente(null, "Claudiana", "711.261.060-54", "8499671-4505", "cliente@gmail.com", "1213456");
+		Tecnico t1 = new Tecnico(null, "Suelio", "034.055.944-64", "8499671-4505", "sueliosantos@gmail.com", encoder.encode("123456"));
+		Cliente c1 = new Cliente(null, "Claudiana", "711.261.060-54", "8499671-4505", "cliente@gmail.com", encoder.encode("123456"));
 		OS os1 = new OS(null, Prioridade.ALTA, "Teste", Status.ANDAMENTO, t1, c1);
 		
 		

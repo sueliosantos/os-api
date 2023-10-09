@@ -1,17 +1,18 @@
 package com.sss.services;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.sss.domain.Pessoa;
 import com.sss.domain.Cliente;
+import com.sss.domain.Pessoa;
 import com.sss.dto.ClienteDTO;
 import com.sss.exceptions.DataValidateExecpiton;
 import com.sss.exceptions.ObjectNotFoundException;
-import com.sss.repositories.PessoaRepository;
 import com.sss.repositories.ClienteRepository;
-
-import jakarta.validation.Valid;
+import com.sss.repositories.PessoaRepository;
 
 @Service
 public class ClienteService {
@@ -20,6 +21,9 @@ public class ClienteService {
 	
 	@Autowired
 	private PessoaRepository pessoaRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 	
 	public Cliente findById(Integer id) {
 		java.util.Optional<Cliente> obj = repository.findById(id);
@@ -36,6 +40,7 @@ public class ClienteService {
 		if (findByCpf(dto)!=null) {
 			throw new DataValidateExecpiton("CPF já cadastrado na base de dados!");
 		}
+		dto.setSenha(encoder.encode(dto.getSenha()));
 		Cliente cliente = new Cliente(null, dto.getNome(), dto.getCpf(), dto.getTelefone(), dto.getEmail(), dto.getSenha());
 		return repository.save(cliente);
 	}

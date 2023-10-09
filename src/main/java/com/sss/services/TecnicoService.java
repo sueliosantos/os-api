@@ -2,7 +2,10 @@ package com.sss.services;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.sss.domain.Pessoa;
@@ -13,8 +16,6 @@ import com.sss.exceptions.ObjectNotFoundException;
 import com.sss.repositories.PessoaRepository;
 import com.sss.repositories.TecnicoRepository;
 
-import jakarta.validation.Valid;
-
 @Service
 public class TecnicoService {
 	@Autowired
@@ -22,6 +23,9 @@ public class TecnicoService {
 	
 	@Autowired
 	private PessoaRepository pessoaRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 	
 	public Tecnico findById(Integer id) {
 		Optional<Tecnico> obj = repository.findById(id);
@@ -38,6 +42,7 @@ public class TecnicoService {
 		if (findByCpf(dto)!=null) {
 			throw new DataValidateExecpiton("CPF já cadastrado na base de dados!");
 		}
+		dto.setSenha(encoder.encode(dto.getSenha()));
 		Tecnico tecnico = new Tecnico(null, dto.getNome(), dto.getCpf(), dto.getTelefone(), dto.getEmail(), dto.getSenha());
 		return repository.save(tecnico);
 	}
