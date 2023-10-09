@@ -4,21 +4,14 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
-<<<<<<< HEAD
 
 import javax.validation.constraints.NotEmpty;
-=======
->>>>>>> 1b48357ed2c7c6d2a28a7f4069e24cd9f974d868
 
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.sss.domain.Tecnico;
 import com.sss.enums.Perfil;
-<<<<<<< HEAD
-=======
 
-import jakarta.validation.constraints.NotEmpty;
->>>>>>> 1b48357ed2c7c6d2a28a7f4069e24cd9f974d868
 
 public class TecnicoDTO implements Serializable{
 	
